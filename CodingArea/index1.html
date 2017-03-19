@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="css/main.css" rel="stylesheet">
+  <script src="js/1.12.4/jquery.min.js"></script>
+  <script src="js/1.12.4/jquery-ui.js"></script>
+  
+
+<link rel=stylesheet href=lib/codemirror.css>
+<script src=lib/codemirror.js></script>
+<script src=lib/xml.js></script>
+<script src=lib/javascript.js></script>
+<script src=lib/css.js></script>
+<script src=lib/closetag.js></script>
+<script src=js/custom.js></script>
+
+<style type="text/css">
+  .CodeMirror {
+    height: auto;
+  }
+</style>
+</head>
+<body>
+
+
+   <div id="mainContent" class="mainContent">
+     <div id="mainContentHolder">
+      <div id="draggable"></div>
+
+      <div class="main-left">
+        <div class="left-inner-content">
+          <div class="left-inner-main">
+            <h1>Lesson 1</h1>
+              <div class="Page active">
+              <div class="panel panel-default">
+                  <div class="panel-body">Lesson 1: </div>
+                </div></div>
+              <div class="Page">2</div>
+              <div class="Page">3</div>
+              <div class="Page">4</div>
+              <div class="Page">5</div>             
+            <button class="previousbutton" type="button">Previous</button>         
+            <button class="nextbutton" type="button">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-center">
+        <div class="center-inner-content">
+          <div class="center-inner-main">
+              <textarea id=editor name=editor>
+
+
+
+
+                
+                
+                
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+</style>
+</head>
+<body onload="startGame()">
+
+
+
+<script>
+
+var Costume;
+var Eyes;
+var SkinTone;
+var HairStyle;
+
+function startGame() {
+    Costume = new component(100, 100, "images/Costume/costume_green.png", 10, 120, "image");
+    Eyes = new component(100, 100, "images/Eyes/eyes_green.png", 10, 120, "image");
+    SkinTone = new component(100, 100, "images/Hair/long_hair_brown.png", 10, 120, "image");
+    HairStyle = new component(100, 100, "images/Skintone/skintone_tan.png", 10, 120, "image");
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+        },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    stop : function() {
+        clearInterval(this.interval);
+    }
+}
+
+function component(width, height, color, x, y, type) {
+    this.type = type;
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;
+
+    }
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        if (type == "image") {
+            ctx.drawImage(this.image, 
+                this.x, 
+                this.y,
+                this.width, this.height);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }
+}
+
+
+function updateGameArea() {
+    myGameArea.clear();
+    Costume.newPos();
+    Costume.update();
+    HairStyle.newPos();
+    HairStyle.update();
+    SkinTone.newPos();
+    SkinTone.update();
+    Eyes.newPos();
+    Eyes.update();
+}
+
+function moveup() {
+    Costume.speedY = -1; 
+}
+
+function movedown() {
+    Costume.speedY = 1; 
+}
+
+function moveleft() {
+    Costume.speedX = -1; 
+}
+
+function moveright() {
+    Costume.speedX = 1; 
+}
+
+function clearmove() {
+    Costume.speedX = 0; 
+    Costume.speedY = 0; 
+}
+
+
+</script>
+<div style="text-align:center;width:480px;">
+  <button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
+  <button onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
+  <button onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
+  <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
+</div>
+
+<p>The component constructor uses the built-in image object to draw images onto the canvas.</p>
+
+</body>
+</html>
+
+ 
+
+
+              
+              
+              </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="main-right">
+        <div class="right-inner-content">
+          <div class="right-inner-main">
+            <div id="iframewrapper"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+           <div class="panel-primary header">
+  <div class="panel-heading">
+    <h3 class="panel-title" style="text-align: center">
+      <button id="runButton" type="button" class="btn btn-default" onclick="submitTryit()">Run</button>
+    </h3>
+  </div>
+</div>
+
+
+<script>
+
+
+
+
+
+    // Initialize CodeMirror editor with a nice html5 canvas demo.
+      var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+        mode: 'text/html',
+        autoCloseTags: true
+      });
+      submitTryit();
+
+  $(document).on('click','.nextbutton', function() {
+       $('.active').removeClass('active').next('.Page').addClass('active');
+  });
+
+  $(document).on('click','.previousbutton', function() {
+       $('.active').removeClass('active').prev('.Page').addClass('active');
+  });
+
+  </script>
+
+</body>
+</html>

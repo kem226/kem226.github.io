@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="css/main.css" rel="stylesheet">
+  <script src="js/1.12.4/jquery.min.js"></script>
+  <script src="js/1.12.4/jquery-ui.js"></script>
+  
+
+<link rel=stylesheet href=lib/codemirror.css>
+<script src=lib/codemirror.js></script>
+<script src=lib/xml.js></script>
+<script src=lib/javascript.js></script>
+<script src=lib/css.js></script>
+<script src=lib/closetag.js></script>
+<script src=js/custom.js></script>
+
+<style type="text/css">
+  .CodeMirror {
+    height: auto;
+  }
+</style>
+</head>
+<body>
+   <div id="mainContent" class="mainContent">
+     <div id="mainContentHolder">
+      <div id="draggable"></div>
+
+      <div class="main-left">
+        <div class="left-inner-content">
+          <div class="left-inner-main">
+            <h1> <img src="icon.png" /> Tutorial</h1>
+              <div class="Page active">
+              <div class="panel panel-default">
+                  <div class="panel-body">Let's write our first code to customize your avatar!
+                  <br>
+                  <br>
+                  Starting with setting an outfit color. 
+                  <br>
+                  <br>                  
+                  Try changing the color in setOutfitColor() to <code>["red"]</code>
+                  <br>
+                  
+                  We can also change the eye color, skin tone and hair type
+                  <br>
+                  
+                  Try changing the color in setEyeColor() to <code>["brown"]</code>
+                  <br>
+                  Try changing the color in setSkinTone() to <code>["fair"]</code>
+                  <br>
+                  Try changing the color in setHairStyle() to <code>["blonde"]</code>
+                  <br>
+                    
+                  Now lets add a space background for our little astronaut!
+                  
+                  Add the background image by adding the image path: <code>"images/background.jpg"</code>
+                  to setBackgroundImage();
+                   </div>
+                </div>
+              </div>
+              <div class="Page"> <div class="panel panel-default">
+                  <div class="panel-body">Nice! You just done your first coding!
+                  <br>
+                  Now we're going to have our avatar move!
+                  <br>
+                  We have already inserted the code for an up button.
+                  <br>
+                  <br>
+                  Duplicate the code and then replace 'down' where both <code>'up'</code> and <code>UP</code> are.
+                                    Do the same with 'right' and 'left'.
+                  <br>
+                   </div>
+                </div>
+              </div>
+              <div class="Page"> <div class="panel panel-default">
+                  <div class="panel-body">Type <code>[placeholder]</code> in the code editor to change a hair color. 
+                  <br>
+                  <br>
+                   Replace the word “color” with your prefer choice of black, brown , red , blonde.
+                  
+                   </div>
+                </div>
+              </div>
+              <div class="Page"> <div class="panel panel-default">
+                  <div class="panel-body">Awesome! You’re getting a hang of this! Why don’t we try changing a skin tone next? 
+                  <br>
+                  <br> 
+                  Type <code>[placeholder]</code> in the code editor, you can choose between A,B,C. Just simply replace the word “skin tone” with your prefer choice. 
+
+
+                   </div>
+                </div>
+              </div>
+              <div class="Page">
+               <div class="panel panel-default">
+                  <div class="panel-body">Nice! You just done your first coding!
+                  <br>
+                  Click continue for the next step! 
+                  
+                   </div>
+                </div>
+              </div>                       
+            <button class="previousbutton" type="button">Previous</button>         
+            <button class="nextbutton" type="button">Next</button>
+            <h2> <img src="../icon2.png"> Stuck? Get a hint!
+            
+          </h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-center">
+        <div class="center-inner-content">
+          <div class="center-inner-main">
+              <textarea id=editor name=editor>
+
+  function startGame() {
+
+    // Sets the Costume Color of your avatar
+    // valid colors are red orange green
+    setOutfitColor("green");
+
+    // Sets the Costume Color of your avatar
+    // valid colors are red orange green
+    setEyeColor("blue");
+
+    // Sets the Costume Color of your avatar
+    // valid colors are red orange green
+    setSkinTone("tan");
+
+    // Sets the Costume Color of your avatar
+    // valid colors are red orange green
+    setHairStyle("long","red");
+
+    // Sets the background 
+    // replace the current color with the path to 
+    // our background image: "images/background.jpg"
+    setBackgroundImage("gray");
+
+    myGameArea.start();
+}
+              
+              </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="main-right">
+        <div class="right-inner-content">
+          <div class="right-inner-main">
+            <div id="iframewrapper"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   
+<div class="panel-primary header">
+  <div class="panel-heading">
+    <h3 class="panel-title" style="text-align: center">
+      <button id="runButton" type="button" class="btn btn-default" onclick="submitTryit()">Run</button>
+    </h3>
+  </div>
+</div>
+
+<script>
+    // Initialize CodeMirror editor with a nice html5 canvas demo.
+      var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+        mode: 'text/html',
+        autoCloseTags: true
+      });
+      submitTryit();
+
+var Tutorial1Text = "";
+  $(document).on('click','.nextbutton', function() {
+        pagenumber = pagenumber + 1;
+        Tutorial1Text = editor.getValue();
+        editor.setValue(`  <button onmousedown="moveCharacter('up')" 
+          onmouseup="stop('stop')" >UP</button>`);
+       $('.active').removeClass('active').next('.Page').addClass('active');
+       submitTryit();
+  });
+
+  $(document).on('click','.previousbutton', function() {
+      pagenumber  = pagenumber - 1;
+       $('.active').removeClass('active').prev('.Page').addClass('active');
+  });
+
+  </script>
+
+</body>
+</html>
